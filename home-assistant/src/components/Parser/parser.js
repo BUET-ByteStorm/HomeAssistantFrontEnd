@@ -36,7 +36,7 @@ function Parser() {
             let source = "",dest = "";
             let i;
             for(i = 2;i<splitText.length;i++){
-                if( splitText[i].toLowerCase() == "to" ){
+                if( splitText[i].toLowerCase() === "to" ){
                     i++;
                     break;
                 }
@@ -49,9 +49,14 @@ function Parser() {
 
             navigate('/maproute/'+source+'/'+dest);
         }
-        else if( splitText[0].toLowerCase() == "news") {
+        else if( splitText[0].toLowerCase() === "news") {
             const str = splitText.slice(1,splitText.length).join(" ");
             navigate('/news/'+str);
+        }
+        else if (splitText[0].toLowerCase() === "create" && splitText[1].toLowerCase() === "note") {
+            navigate('/notes/create');
+        } else if (splitText[0].toLowerCase() === "show" && splitText[1].toLowerCase() === "notes") {
+            navigate('/notes');
         }
         else{
             navigate('/search/'+formattedText);

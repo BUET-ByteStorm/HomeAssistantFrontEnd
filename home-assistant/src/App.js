@@ -9,6 +9,8 @@ import Parser from './components/Parser/parser';
 import MapRoute from './pages/maproute';
 import News from './pages/news';
 import Search from './pages/search';
+import CreateNote from './pages/create-note.js';
+import ShowNotes from './pages/show-notes.js';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/maproute/:sourceGeo/:destGeo" element= {<MapRoute />} />
         <Route path="/news/:Query" element= {<News/>} />
         <Route path="/search/:Query" element= {<Search/>} />
+        <Route path="/notes/create" element= {<CreateNote/>}/>
+        <Route path="/notes/show" element= {<ShowNotes/>}/>
       </Routes>
     </Router>
   );
