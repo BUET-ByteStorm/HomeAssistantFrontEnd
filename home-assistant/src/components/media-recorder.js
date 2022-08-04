@@ -35,7 +35,8 @@ const RecordView = () => {
             fileURL = response.data.url;
         })
         .catch( (error) => {
-            console.log(error) ;
+            console.log(error);
+            console.log(error.response) ;
         });
     }
 
