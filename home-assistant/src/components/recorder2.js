@@ -7,7 +7,8 @@ export default class AudioRecorder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: ""
+      status: "",
+      audioType: "audio/wav"
     };
   }
 
@@ -76,6 +77,8 @@ export default class AudioRecorder extends Component {
               Log
             </Button>
                     <Button onClick={() => {
+                        const formData = new FormData();
+                        
                         postData('/upload-file', {"__audio":this.audioType,"text":"hi there","text2":"hi dogesh"})
                         .then((response) => {
                             console.log(this.audioType);
@@ -99,8 +102,8 @@ export default class AudioRecorder extends Component {
           onChange={e => this.changeScheme(e)}
           value={audioType}
         >
-          <option value="audio/webm">audio/webm（default）</option>
           <option value="audio/wav">audio/wav</option>
+          <option value="audio/webm">audio/webm</option>
           <option value="audio/mp3">audio/mp3</option>
         </select>
       </div>
