@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react";
-import Login from "../../pages/login";
-import AudioRecorder from "../recorder2";
-import Recorder2 from '../components/recorder2';
-import MediaRecorderM from '../components/media-recorder';
+import Login from "../login";
+import AudioRecorder from "../../components/recorder2";
+import Recorder2 from '../../components/recorder2';
+import MediaRecorderM from '../../components/media-recorder';
 
 function Home() {
     return (
