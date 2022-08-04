@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import axios, {AxiosResponse} from "axios";
 
-const useAxiosFetch = (setData: (d: any) => void, url:string,token: string, dep?: any[], timeout?: number) => {
+const useAxiosFetch = (setData, url,token=undefined, dep=[], timeout=undefined) => {
     // const [data, setData] = useState<AxiosResponse | null>(null);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -12,7 +12,7 @@ const useAxiosFetch = (setData: (d: any) => void, url:string,token: string, dep?
         let unmounted = false;
         let source = axios.CancelToken.source();
         const axiosInstance = axios.create({
-          baseURL: process.env.REACT_APP_SERVER_URL + "",
+        //   baseURL: process.env.REACT_APP_SERVER_URL + "",
           headers: { authorization: "Bearer " + token },
           timeout: timeout,
           cancelToken: source.token,
@@ -22,8 +22,10 @@ const useAxiosFetch = (setData: (d: any) => void, url:string,token: string, dep?
         .then( response => {
             if (!unmounted) {
                 console.log(url+' response: ');
-                console.log(response.data.data);
-                setData(response.data.data);
+                console.log(response);
+                console.log(url+' response data: ');
+                console.log(response.data);
+                setData(response.data);
                 setLoading(false);
             }
         }).catch(function (e) {
