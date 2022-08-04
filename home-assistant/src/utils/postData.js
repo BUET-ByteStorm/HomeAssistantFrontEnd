@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const postData = async (url: string, body: any, token?: string) => {
+const postData = async (url, body, token=undefined) => {
     const instance = axios.create({
         baseURL: process.env.REACT_APP_SERVER_URL+'',
         timeout: 1000,

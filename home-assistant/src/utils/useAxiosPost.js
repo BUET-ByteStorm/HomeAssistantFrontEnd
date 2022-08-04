@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import axios, {AxiosResponse} from "axios";
 
-const useAxiosPost = (setData: (d: any) => void, url:string, body: any, token: string, dep?: any[], timeout?: number) => {
+const useAxiosPost = (setData, url, body, token, dep=undefined, timeout=undefined) => {
     // const [data, setData] = useState<AxiosResponse | null>(null);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
