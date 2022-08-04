@@ -1,6 +1,7 @@
 import './App.css';
 import Login from './pages/login' ;
 import Recorder from './components/recorder';
+import Recorder2 from './components/recorder2';
 
 import {
   Alert,
@@ -23,6 +24,9 @@ function App() {
     <Login></Login>
     <Box>
     <Recorder></Recorder>
+    </Box>
+    <Box>
+    <Recorder2></Recorder2>
     </Box>
     </div>
   );
