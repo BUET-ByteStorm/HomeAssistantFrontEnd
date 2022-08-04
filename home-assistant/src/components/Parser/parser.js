@@ -7,9 +7,9 @@ function Parser() {
     const [qString, setQString] = useSearchParams();
 
     const text = qString.get('q');
-    const splitText = text.split(" ");
-    // console.log(splitText);
     const formattedText = text.replace(/[^a-zA-Z0-9 ]/g, '');
+    const splitText = formattedText.split(" ");
+    // console.log(splitText);
     const navigate = useNavigate();
 
     useEffect(()=> {
@@ -54,7 +54,7 @@ function Parser() {
             navigate('/news/'+str);
         }
         else{
-            navigate('/search/'+text);
+            navigate('/search/'+formattedText);
         }
     },[]);
 

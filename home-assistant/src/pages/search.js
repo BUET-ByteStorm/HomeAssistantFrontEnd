@@ -3,32 +3,29 @@ import { FaMicrophone } from "react-icons/fa"
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
 
-async function searchNews(q) {
-    q = encodeURIComponent(q);
-    const response = await fetch(`https://bing-news-search1.p.rapidapi.com/news/search?freshness=Day&textFormat=Raw&safeSearch=Strict&q=${q}`, {
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-        "x-rapidapi-key": "2427126120msh6bb5b93577d2090p1d3744jsncf3d6497a306",
-        "x-bingapis-sdk": "true"
-      }
-    });
-    const body = await response.json();
-    return body.value;
-  }
+async function searchStuff(q) {
+q = encodeURIComponent(q);
+const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAtd72mXySE39fOi1l6F0fdtSPMFymamE4&cx=a36a2370c42a34618&q=${q}`, {
+    "method": "GET",
+});
+const body = await response.json();
+return body.items;
+}
 
-function News() {
+
+
+function Search() {
   const { Query } = useParams();
   const [query, setQuery] = useState(Query);
   const [list, setList] = useState();
 
   const search = (e) => {
     e.preventDefault();
-    searchNews(query).then(setList);
+    searchStuff(query).then(setList);
   };
 
   useEffect(()=>{
-searchNews(query).then(setList);
+searchStuff(query).then(setList);
   },[] );
 
   return (
@@ -42,7 +39,7 @@ searchNews(query).then(setList);
 
         </Stack>
         </Box>
-
+        
         <Box maxW='720px' m='auto'>
         {!list
             ? null
@@ -55,9 +52,7 @@ searchNews(query).then(setList);
                 ))}
             </ul>
         }
-        </Box>
-
-      
+        </Box>      
     </div>
   );
 }
@@ -68,43 +63,19 @@ function Item({ item }) {
   
     return (
     <div className="item">
-  
-        < Feature title={item.name} desc={item.description} img={item.image?.thumbnail?.contentUrl} datePublished={formatDate(item.datePublished)} onClick={()=> {window.open(item.url)}} />
-  
-          {/* <div className="meta">
-        
-          <span className="provider">
-            {item.provider[0].image?.thumbnail &&
-              <img className="provider-thumbnail"
-                alt=""
-                src={item.provider[0].image.thumbnail.contentUrl + '&w=16&h=16'}
-              />
-            }
-            {item.provider[0].name}
-
-          </span> */}
-  
-          {/* {item.category &&
-            <span>{separateWords(item.category)}</span>
-          } */}
-
-        {/* </div> */}
+        < Feature title={item.title} desc={item.snippet} onClick={()=> {window.open(item.link)}} />
         <Divider/>
       </div>
     );
   }
 
-  function Feature({ title, desc, img, datePublished, ...rest }) {
+  function Feature({ title, desc, ...rest }) {
     return (
       <Box p={5} shadow='md' borderWidth='1px' {...rest}>
         <Heading fontSize='xl'>{title}</Heading>
-        <Stack spacing={8} direction='row'>
             <Text mt={4}>{desc}</Text>
-            <Image src={img} alt=''/>
-        </Stack>
-        <Text mt={2}>{datePublished}</Text>
       </Box>
     )
   }
 
-export default News;
+export default Search;
