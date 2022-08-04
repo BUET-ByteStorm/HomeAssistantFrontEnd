@@ -26,7 +26,7 @@ function App() {
         <Route path="/maproute/:sourceGeo/:destGeo" element= {<MapRoute />} />
         <Route path="/news/:Query" element= {<News/>} />
         <Route path="/search/:Query" element= {<Search/>} />
-        <Route path="/notes/create" element= {<CreateNote/>}/>
+        <Route path="/notes/create/:Query" element= {<CreateNote/>}/>
         <Route path="/notes/show" element= {<ShowNotes/>}/>
 
         <Route path='/login' element={<Login />} />
