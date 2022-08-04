@@ -1,5 +1,6 @@
 import './App.css';
 import Login from './pages/login' ;
+import Recorder from './components/recorder';
 
 import {
   Alert,
@@ -19,6 +20,7 @@ function App() {
     <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
     </Alert>
     <Login></Login>
+    <Recorder></Recorder>
     </div>
   );
 }
