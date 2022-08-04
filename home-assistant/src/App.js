@@ -1,8 +1,11 @@
 import './App.css';
+
+import { BrowserRouter as Router , Routes, Route } from 'react-router-dom';
 import Login from './pages/login' ;
 import Recorder from './components/recorder';
 import Recorder2 from './components/recorder2';
 import MediaRecorderM from './components/media-recorder';
+
 
 import {
   Alert,
@@ -13,21 +16,15 @@ import {
 } from '@chakra-ui/react'
 
 import AudioRecorder from 'react-audio-recorder';
+import Home from './components/home/home';
 
 function App() {
   return (
-    <div className="App">
-    <Login></Login>
-    <Box>
-      <AudioRecorder />
-    </Box>
-    <Box>
-      <MediaRecorderM />
-    </Box>
-    <Box>
-    <Recorder2></Recorder2>
-    </Box>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element= {<Home />}/>
+      </Routes>
+    </Router>
   );
 }
 
