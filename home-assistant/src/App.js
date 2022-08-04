@@ -11,6 +11,8 @@ import News from './pages/news';
 import Search from './pages/search';
 import CreateNote from './pages/create-note.js';
 import ShowNotes from './pages/show-notes.js';
+import Login from './pages/login';
+import Register from './pages/register';
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
         <Route path="/search/:Query" element= {<Search/>} />
         <Route path="/notes/create" element= {<CreateNote/>}/>
         <Route path="/notes/show" element= {<ShowNotes/>}/>
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </Router>
   );
