@@ -37,7 +37,7 @@ searchNews(query).then(setList);
         <Box maxW='720px' p="5px" m="auto" mt="8" mb="8">
         <Stack spacing={3} direction='row'>
         <Input placeholder='Search' size='md' value={query} onChange={e => setQuery(e.target.value)} />
-        <Button leftIcon={<FaMicrophone/>} variant='solid'>Voice</Button>
+        {/* <Button leftIcon={<FaMicrophone/>} variant='solid'>Voice</Button> */}
         <Button onClick={search}>Search</Button>
 
         </Stack>

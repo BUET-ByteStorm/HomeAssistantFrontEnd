@@ -54,6 +54,8 @@ function Parser() {
             navigate('/news/'+str);
         }
         else if (splitText[0].toLowerCase() === "create" && splitText[1].toLowerCase() === "note") {
+            console.log("ok")
+            console.log(text)
             const splitText2 = text.split(" ");
             var str = "";
             for (let i = 2; i < splitText2.length; i++) {
@@ -61,9 +63,10 @@ function Parser() {
                     str = str + splitText2[i];
                 } else str = str + splitText2[i] + " ";
             }
+            console.log(str)
             navigate('/notes/create/' + str);
         } else if (splitText[0].toLowerCase() === "show" && (splitText[1].toLowerCase() === "notes" || splitText[1].toLowerCase() === "notes")) {
-            navigate('/notes');
+            navigate('/notes/show');
         }
         else{
             navigate('/search/'+formattedText);
