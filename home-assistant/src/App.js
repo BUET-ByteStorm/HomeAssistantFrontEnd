@@ -7,6 +7,7 @@ import ArtistComponent from './pages/music/ArtistComponent';
 import TrackComponent from './pages/music/TrackComponent';
 import Parser from './components/Parser/parser';
 import MapRoute from './pages/maproute';
+import News from './pages/news';
 
 function App() {
   return (
