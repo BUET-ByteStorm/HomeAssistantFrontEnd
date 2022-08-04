@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import fetchData from "../utils/fetchData";
 
 function ShowNotes() {
-  const [list, setList] = useState();
+    const [list, setList] = useState();
 
   const search = async () => {
     const res = await fetchData('/notes', '');

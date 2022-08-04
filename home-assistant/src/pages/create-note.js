@@ -5,18 +5,23 @@ import { useParams } from "react-router-dom";
 import postData from "../utils/postData";
 
 async function createNoteRequest(q) {
-    const req_json = {noteCreator: 'Quvi', noteId: '1', noteContent: q}
+    const req_json = {noteCreator: 'Quvi', noteId: 'quvi_notes', noteContent: q}
     postData('/notes', req_json).then((response) => {
         console.log(response)
     })
 }
 
 function CreateNote() {
-  const [query, setQuery] = useState("");
-  const create = (e) => {
-    e.preventDefault();
-    createNoteRequest(query);
-  };
+    const { Query } = useParams();
+    const [query, setQuery] = useState(Query);
+    const create = (e) => {
+        e.preventDefault();
+        createNoteRequest(query);
+    };
+
+    useEffect(()=>{
+        createNoteRequest(query)
+          },[] );
 
   return (
     <div className="app">

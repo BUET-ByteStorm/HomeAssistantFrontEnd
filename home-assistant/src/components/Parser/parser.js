@@ -54,8 +54,15 @@ function Parser() {
             navigate('/news/'+str);
         }
         else if (splitText[0].toLowerCase() === "create" && splitText[1].toLowerCase() === "note") {
-            navigate('/notes/create');
-        } else if (splitText[0].toLowerCase() === "show" && splitText[1].toLowerCase() === "notes") {
+            const splitText2 = text.split(" ");
+            var str = "";
+            for (let i = 2; i < splitText2.length; i++) {
+                if (i === splitText2.length - 1) {
+                    str = str + splitText2[i];
+                } else str = str + splitText2[i] + " ";
+            }
+            navigate('/notes/create/' + str);
+        } else if (splitText[0].toLowerCase() === "show" && (splitText[1].toLowerCase() === "notes" || splitText[1].toLowerCase() === "notes")) {
             navigate('/notes');
         }
         else{

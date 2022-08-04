@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const fetchData = async (url: string, token?: string) => {
+const fetchData = async (url, token) => {
     const instance = axios.create({
         baseURL: process.env.REACT_APP_SERVER_URL+'',
         timeout: 10000,
