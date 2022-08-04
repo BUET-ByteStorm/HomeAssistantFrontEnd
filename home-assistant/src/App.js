@@ -12,19 +12,17 @@ import {
   Box,
 } from '@chakra-ui/react'
 
+import AudioRecorder from 'react-audio-recorder';
 
 function App() {
   return (
     <div className="App">
-      {/* <h1>Hello</h1>
-      <Alert status='error'>
-    <AlertIcon />
-    <AlertTitle>Your browser is outdated!</AlertTitle>
-    <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
-    </Alert> */}
     <Login></Login>
     <Box>
-      <MediaRecorderM></MediaRecorderM>
+      <AudioRecorder />
+    </Box>
+    <Box>
+      <MediaRecorderM />
     </Box>
     <Box>
     <Recorder2></Recorder2>
