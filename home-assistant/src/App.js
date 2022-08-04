@@ -17,7 +17,7 @@ function App() {
         <Route path="/music/artist/:artistParam" element= {<ArtistComponent />} />
         <Route path="/music/track/:trackParam" element= {<TrackComponent />} />
         <Route path="/parser" element={ <Parser /> } />
-        <Route path="/maproute" element= {<MapRoute />} />
+        <Route path="/maproute/:sourceGeo/:destGeo" element= {<MapRoute />} />
       </Routes>
     </Router>
   );
