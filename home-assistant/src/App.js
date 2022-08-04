@@ -7,6 +7,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Box,
 } from '@chakra-ui/react'
 
 
@@ -20,7 +21,9 @@ function App() {
     <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
     </Alert>
     <Login></Login>
+    <Box>
     <Recorder></Recorder>
+    </Box>
     </div>
   );
 }

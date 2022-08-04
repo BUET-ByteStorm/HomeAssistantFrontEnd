@@ -43,7 +43,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="Recorder">
         <Recorder
           record={true}
           title={"New recording"}
