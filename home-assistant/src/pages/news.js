@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { FaMicrophone } from "react-icons/fa"
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
+import { useParams } from "react-router-dom";
 
 async function searchNews(q) {
     q = encodeURIComponent(q);
@@ -17,8 +18,8 @@ async function searchNews(q) {
   }
 
 function News() {
-
-  const [query, setQuery] = useState("");
+  const { Query } = useParams();
+  const [query, setQuery] = useState(Query);
   const [list, setList] = useState();
 
   const search = (e) => {
