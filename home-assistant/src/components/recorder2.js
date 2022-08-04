@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AudioAnalyser from "react-audio-analyser";
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import postData from "../utils/postData";
+import sendRecFile from "./sendRecordedFile";
 
 export default class AudioRecorder extends Component {
   constructor(props) {
@@ -76,21 +77,10 @@ export default class AudioRecorder extends Component {
             <Button onClick={() => console.log(AudioAnalyser)}>
               Log
             </Button>
-                    <Button onClick={() => {
-                        const formData = new FormData();
-                        
-                        postData('/upload-file', {"__audio":this.audioType,"text":"hi there","text2":"hi dogesh"})
-                        .then((response) => {
-                            console.log(this.audioType);
-                            console.log("response: ");
-                            console.log(response);
-                            console.log("response data: ");
-                            console.log(response.data);
-                        })
-                        .catch((error) => {
-                            console.log(error.response);
-                        }); } 
-                    }>
+            <Button onClick={() => {
+                sendRecFile(audioSrc);
+            }
+            }>
                 Send
             </Button>
           </div>

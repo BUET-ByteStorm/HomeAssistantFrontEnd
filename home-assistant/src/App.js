@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 
 import AudioRecorder from 'react-audio-recorder';
-import Home from './pages/home/home';
+import Home from './pages/home';
 
 function App() {
   return (
