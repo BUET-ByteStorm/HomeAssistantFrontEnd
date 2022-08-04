@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import AudioAnalyser from "react-audio-analyser";
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import postData from "../utils/postData";
 
 export default class AudioRecorder extends Component {
   constructor(props) {
@@ -58,24 +60,36 @@ export default class AudioRecorder extends Component {
       <div>
         <AudioAnalyser {...audioProps}>
           <div className="btn-box">
-            <button
-              className="btn"
-              onClick={() => this.controlAudio("recording")}
-            >
-              Start
-            </button>
-            <button className="btn" onClick={() => this.controlAudio("paused")}>
+            <Button colorScheme='blue'
+                    onClick={() => this.controlAudio("recording")}>
+                Start
+            </Button>
+            <Button onClick={() => this.controlAudio("paused")}>
               Pause
-            </button>
-            <button
-              className="btn"
+            </Button>
+            <Button
               onClick={() => this.controlAudio("inactive")}
             >
               Stop
-            </button>
-            <button className="btn" onClick={() => console.log(AudioAnalyser)}>
+            </Button>
+            <Button onClick={() => console.log(AudioAnalyser)}>
               Log
-            </button>
+            </Button>
+                    <Button onClick={() => {
+                        postData('/upload-file', {"__audio":this.audioType,"text":"hi there","text2":"hi dogesh"})
+                        .then((response) => {
+                            console.log(this.audioType);
+                            console.log("response: ");
+                            console.log(response);
+                            console.log("response data: ");
+                            console.log(response.data);
+                        })
+                        .catch((error) => {
+                            console.log(error.response);
+                        }); } 
+                    }>
+                Send
+            </Button>
           </div>
         </AudioAnalyser>
         <p>choose output type</p>
