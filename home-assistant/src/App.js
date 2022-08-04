@@ -17,12 +17,14 @@ import {
 
 import AudioRecorder from 'react-audio-recorder';
 import Home from './pages/home';
+import MapRoute from './pages/maproute';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element= {<Home />}/>
+        <Route path="/maproute" element= {<MapRoute />} />
       </Routes>
     </Router>
   );
