@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getGenreIdFromName, getGenres, getPlaylistByGenre, getToken } from "./spotify_api";
+import { getGenreIdFromName, getGenres, getPlaylistByGenre, getToken, sear, search } from "./spotify_api";
 
 import {
   Accordion,
@@ -15,38 +15,34 @@ import { useParams } from "react-router-dom";
 
 function MusicComponent() {
 
-    var { genreParam } = useParams();
-    console.log(genreParam);
+    const [results, setResults] = useState();
 
-    const [token, setToken] = useState();
-    const [genres, setGenres] = useState();
-    const [playlist, setPlaylist] = useState();
+    var { artistParam } = useParams();
+    console.log(artistParam);
+
     useEffect(()=> {
         const fetchToken = async ()=> {
             const t = await getToken();
-            setToken(t);
+            
+            const a = await search(t, artistParam, "artist");
 
 
-            const gnr = await getGenres(t);
-            setGenres(gnr);
-            console.log(getGenreIdFromName(genreParam, gnr));
-
-            const plst = await getPlaylistByGenre(t, getGenreIdFromName(genreParam, gnr));
-            console.log(plst);
-            const filteredPlst = plst.map(song => {
+            const filteredResult = a.artists.items.map(artist => {
                 return (
-                    <AccordionItem key={song.id}>
+                    <AccordionItem key={artist.id}>
                         <h2>
                         <AccordionButton>
                         <Box flex='1' textAlign='left'>
-                            {song.name}
+                            {artist.name}
                         </Box>
                         <AccordionIcon />
                         </AccordionButton>
                         </h2>
                         <AccordionPanel pb={4}>
-                        <Box py="5"> {song.description}</Box>
-                        <Button onClick={()=> {window.open(song.external_urls.spotify)} }> Play </Button>
+                        <Box py="5">
+                            {artist.images.length > 0 && <img src={ artist.images[0].url } />}
+                        </Box>
+                        <Button onClick={()=> {window.open(artist.external_urls.spotify)} }> Play </Button>
                         </AccordionPanel>
 
 
@@ -54,7 +50,7 @@ function MusicComponent() {
                 )
             });
 
-            setPlaylist( filteredPlst )
+            setResults(filteredResult);
         };
         fetchToken();
     }, []);
@@ -63,11 +59,10 @@ function MusicComponent() {
         <div >
             <Box maxW="720px" mx="auto">
             <Text fontSize='50px' color='tomato'>
-                Music Suggestion : {genreParam} 
+                Artist : { artistParam } 
             </Text>
             <Accordion>
-                {playlist}
-                
+                {results}
             </Accordion>
             </Box>
         </div>

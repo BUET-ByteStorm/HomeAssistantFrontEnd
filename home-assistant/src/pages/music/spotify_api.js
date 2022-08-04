@@ -38,6 +38,20 @@ async function getPlaylistByGenre(token, genreId) {
     return data.playlists.items;
 }
 
+async function search(token, name, type) {
+    const limit = 10;
+
+    const result = await fetch(`https://api.spotify.com/v1/search?q=${name}&type=${type}&limit=${limit}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+
+    const data = await result.json();
+
+    console.log(data);
+    return data;
+}
+
 function getGenreIdFromName(name, genres) {
     for (var i=0; i<genres.length; i++) {
         if (genres[i].name.toLowerCase() === name.toLowerCase()) {
@@ -47,4 +61,4 @@ function getGenreIdFromName(name, genres) {
     return 0;
 }
 
-export {getToken, getGenres, getPlaylistByGenre, getGenreIdFromName};
+export {getToken, getGenres, getPlaylistByGenre, getGenreIdFromName, search};

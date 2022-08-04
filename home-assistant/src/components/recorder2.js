@@ -1,10 +1,38 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import AudioAnalyser from "react-audio-analyser";
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import postData from "../utils/postData";
 import sendRecFile from "./sendRecordedFile";
 
+import { useNavigate } from "react-router-dom";
+
+
+function InRecorder(props) {
+
+  const navigate = useNavigate();
+
+  const next = (text)=> {
+    console.log("Done");
+
+    navigate({
+      pathname: '/parser',
+      search: `?q=${text}`
+    });
+  }
+
+  const {audioSrc} = props;
+  return (
+            <Button onClick={() => {
+                sendRecFile(audioSrc, next);
+            }}
+            >
+                Send
+            </Button>
+  )
+}
+
 export default class AudioRecorder extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -77,12 +105,7 @@ export default class AudioRecorder extends Component {
             <Button onClick={() => console.log(AudioAnalyser)}>
               Log
             </Button>
-            <Button onClick={() => {
-                sendRecFile(audioSrc);
-            }
-            }>
-                Send
-            </Button>
+            <InRecorder audioSrc={audioSrc} />
           </div>
         </AudioAnalyser>
         <p>choose output type</p>
