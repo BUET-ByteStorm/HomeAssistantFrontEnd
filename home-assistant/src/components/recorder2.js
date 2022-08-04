@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import AudioAnalyser from "react-audio-analyser";
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup } from '@chakra-ui/react'
 import postData from "../utils/postData";
 import sendRecFile from "./sendRecordedFile";
 
@@ -87,7 +87,7 @@ export default class AudioRecorder extends Component {
       }
     };
     return (
-      <div>
+      <Box style={{display:"block",alignContent:"center",justifyContent:"center"}}>
         <AudioAnalyser {...audioProps}>
           <div className="btn-box">
             <Button colorScheme='blue'
@@ -108,7 +108,7 @@ export default class AudioRecorder extends Component {
             <InRecorder audioSrc={audioSrc} />
           </div>
         </AudioAnalyser>
-        <p>choose output type</p>
+        {/* <p>choose output type</p>
         <select
           name=""
           id=""
@@ -118,8 +118,8 @@ export default class AudioRecorder extends Component {
           <option value="audio/wav">audio/wav</option>
           <option value="audio/webm">audio/webm</option>
           <option value="audio/mp3">audio/mp3</option>
-        </select>
-      </div>
+        </select> */}
+      </Box>
     );
   }
 }
