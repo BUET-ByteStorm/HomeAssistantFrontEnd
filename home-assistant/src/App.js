@@ -1,4 +1,5 @@
 import './App.css';
+import Login from './pages/login' ;
 
 import {
   Alert,
@@ -17,6 +18,7 @@ function App() {
     <AlertTitle>Your browser is outdated!</AlertTitle>
     <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
     </Alert>
+    <Login></Login>
     </div>
   );
 }
