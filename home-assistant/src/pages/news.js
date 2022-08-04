@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { FaMicrophone } from "react-icons/fa"
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
@@ -22,10 +22,17 @@ function News() {
   const [query, setQuery] = useState(Query);
   const [list, setList] = useState();
 
+  searchNews(query).then(setList);
+  
   const search = (e) => {
     e.preventDefault();
     searchNews(query).then(setList);
   };
+
+  // useEffect(()=>{
+  //   search(query);
+
+  // },[] );
 
   return (
     <div className="app">
