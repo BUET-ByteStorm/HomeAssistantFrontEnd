@@ -22,17 +22,16 @@ function News() {
   const [query, setQuery] = useState(Query);
   const [list, setList] = useState();
 
-  searchNews(query).then(setList);
+  
   
   const search = (e) => {
     e.preventDefault();
     searchNews(query).then(setList);
   };
 
-  // useEffect(()=>{
-  //   search(query);
-
-  // },[] );
+  useEffect(()=>{
+searchNews(query).then(setList);
+  },[] );
 
   return (
     <div className="app">
