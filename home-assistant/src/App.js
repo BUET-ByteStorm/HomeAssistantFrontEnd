@@ -19,6 +19,7 @@ function App() {
         <Route path="/music/track/:trackParam" element= {<TrackComponent />} />
         <Route path="/parser" element={ <Parser /> } />
         <Route path="/maproute/:sourceGeo/:destGeo" element= {<MapRoute />} />
+        <Route path="/news/:Query" element= {<News/>} />
       </Routes>
     </Router>
   );
