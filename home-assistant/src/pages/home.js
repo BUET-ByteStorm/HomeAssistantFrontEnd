@@ -11,17 +11,7 @@ function Home() {
         <div className="App">
             <Login></Login>
             <Box>
-                <AudioRecorder />
-            </Box>
-            <Box>
-                <MediaRecorderM />
-            </Box>
-            <Box>
                 <Recorder2></Recorder2>
-            </Box>
-
-            <Box>
-                <Map></Map>
             </Box>
         </div>
 
