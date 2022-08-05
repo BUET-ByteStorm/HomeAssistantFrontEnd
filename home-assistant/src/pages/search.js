@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from "react";
 import { FaMicrophone } from "react-icons/fa"
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
+import Recorder2 from "../components/recorder2";
 
 async function searchStuff(q) {
 q = encodeURIComponent(q);
@@ -30,14 +31,13 @@ searchStuff(query).then(setList);
 
   return (
     <div className="app">
-
         <Box maxW='720px' p="5px" m="auto" mt="8" mb="8">
         <Stack spacing={3} direction='row'>
         <Input placeholder='Search' size='md' value={query} onChange={e => setQuery(e.target.value)} />
-        <Button leftIcon={<FaMicrophone/>} variant='solid'>Voice</Button>
         <Button onClick={search}>Search</Button>
-
         </Stack>
+        
+        <Recorder2 m="auto"></Recorder2>
         </Box>
         
         <Box maxW='720px' m='auto'>
@@ -48,11 +48,14 @@ searchStuff(query).then(setList);
             : <ul>
                 {list.map((item, i) => (
                 
-                <Item key={i} item={item} />
+                <Item key={i} item={item}/>
                 ))}
             </ul>
         }
-        </Box>      
+        </Box> 
+        
+
+
     </div>
   );
 }

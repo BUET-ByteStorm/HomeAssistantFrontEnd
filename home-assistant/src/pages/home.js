@@ -9,7 +9,6 @@ import Map from "../components/map";
 function Home() {
     return (
         <div className="App">
-            <Login></Login>
             <Box>
                 <Recorder2></Recorder2>
             </Box>

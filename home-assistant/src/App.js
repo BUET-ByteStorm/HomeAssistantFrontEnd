@@ -17,7 +17,7 @@ import Register from './pages/register';
 function App() {
   return (
     <Router>
-      <Routes>
+      <Routes>  
         <Route path="/" element= {<Home />}/>
         <Route path="/music/genre/:genreParam" element= {<MusicComponent />} />
         <Route path="/music/artist/:artistParam" element= {<ArtistComponent />} />

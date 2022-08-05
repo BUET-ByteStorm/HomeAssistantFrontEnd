@@ -48,7 +48,7 @@ const Login = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Heading color="teal.400">Login</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form>
             <Stack
