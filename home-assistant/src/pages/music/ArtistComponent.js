@@ -12,6 +12,7 @@ import {
   Button
 } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
+import AudioRecorder from "../../components/recorder2";
 
 function MusicComponent() {
 
@@ -58,7 +59,9 @@ function MusicComponent() {
     return (
         <div >
             <Box maxW="720px" mx="auto">
+            <AudioRecorder></AudioRecorder>
             <Text fontSize='50px' color='tomato'>
+
                 Artist : { artistParam } 
             </Text>
             <Accordion>

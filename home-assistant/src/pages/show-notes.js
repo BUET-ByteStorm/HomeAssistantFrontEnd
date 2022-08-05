@@ -3,15 +3,16 @@ import { FaMicrophone } from "react-icons/fa"
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
 import fetchData from "../utils/fetchData";
+import { useCookies } from "react-cookie";
 
 function ShowNotes() {
     const [list, setList] = useState();
-
+  const [cookies,setCookies] = useCookies(["token","username"]);
   const search = async () => {
-    const res = await fetchData('/notes', '');
+    const res = await fetchData('/notes', cookies.token);
     console.log(res)
-    var aList = res.data.map((item) => {
-        return (<div><Feature desc={item.noteContent} id={item.noteId}/></div>)
+    var aList = res.data.data.map((item) => {
+        return (<div><Feature desc={item.content} id={item.id}/></div>)
     })
     setList(aList)
   };

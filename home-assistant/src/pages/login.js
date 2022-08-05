@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import postData from "../utils/postData";
+import { useNavigate } from "react-router-dom";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -26,6 +27,8 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [cookies,setCookies] = useCookies(['token','username']); 
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -37,7 +40,10 @@ const Login = () => {
       console.log(response);
 
       if(response.status === 200 ){
-        
+        console.log("logged in");
+        setCookies('username',email);
+        setCookies('token',response.data.access_token);
+        navigate("/"); 
       }
     })
   }

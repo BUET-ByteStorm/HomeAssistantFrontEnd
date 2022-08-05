@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import postData from "../utils/postData";
 import {
   Flex,
   Heading,
@@ -21,16 +23,30 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const Register = () => {
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
   const handleSubmit = () => {
     console.log(email + " " + password);
+
+    postData('/auth/register',{username:email,password:password}).then((response) => {
+      console.log(response);
+
+      if(response.status === 200 ){
+        console.log("register succesfull");
+        // setCookies('username',email);
+        // setCookies('token',response.data.access_token); 
+        navigate("/login"); 
+      }
+    }).catch((e) => {
+      console.log(e);
+      navigate("/register");
+    });
   }
 
   return (

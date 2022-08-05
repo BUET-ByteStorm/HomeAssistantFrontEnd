@@ -3,15 +3,21 @@ import { FaMicrophone } from "react-icons/fa";
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
 import postData from "../utils/postData";
+import { useCookies } from "react-cookie";
 
-async function createNoteRequest(q) {
+async function createNoteRequest(q,token) {
+    //
     const req_json = {noteCreator: 'Quvi', noteId: 'quvi_notes', noteContent: q}
-    postData('/notes', req_json).then((response) => {
-        console.log(response)
+    postData('/notes', {content:q}, token ).then((response) => {
+        console.log(response);
+
+    }).catch((e) => {
+        console.log(e);
     })
 }
 
 function CreateNote() {
+    const [cookies,setCookies] = useCookies(["token","username"]);
     const { Query } = useParams();
     const [query, setQuery] = useState(Query);
     const create = (e) => {
@@ -20,7 +26,7 @@ function CreateNote() {
     };
 
     useEffect(()=>{
-        createNoteRequest(query)
+        createNoteRequest(query,cookies.token) ;
           },[] );
 
   return (

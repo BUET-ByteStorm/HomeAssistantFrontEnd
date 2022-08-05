@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getGenreIdFromName, getGenres, getPlaylistByGenre, getToken, sear, search } from "./spotify_api";
+import AudioRecorder from "../../components/recorder2";
 
 import {
   Accordion,
@@ -56,6 +57,7 @@ function TrackComponent() {
     return (
         <div >
             <Box maxW="720px" mx="auto">
+            <AudioRecorder></AudioRecorder>
             <Text fontSize='50px' color='tomato'>
                 Track : { trackParam } 
             </Text>
