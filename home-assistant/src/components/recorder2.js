@@ -90,8 +90,9 @@ export default class AudioRecorder extends Component {
       }
     };
     return (
+
       <div>
-        <Box maxW="720px" m="auto">
+        <Box maxW="720px" m="auto"> 
         <AudioAnalyser {...audioProps}>
           <div className="btn-box">
               <Button leftIcon={<FaMicrophone/>} variant='solid' onClick={() => this.controlAudio("recording")} ml='2' mr='2'>Start</Button>
@@ -99,8 +100,8 @@ export default class AudioRecorder extends Component {
             
             <InRecorder audioSrc={audioSrc} />
           </div>
-        </AudioAnalyser> 
-        </Box> 
+        </AudioAnalyser>
+        </Box>
       </div>
     );
   }

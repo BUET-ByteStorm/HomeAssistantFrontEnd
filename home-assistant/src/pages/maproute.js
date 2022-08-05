@@ -1,8 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import MapRouteComponent from "../components/mapRoute";
 import useAxiosFetch from "../utils/useAxiosFetch" ;
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSpeechSynthesis } from "react-speech-kit";
 
 const api_key = process.env.REACT_APP_ORS_API_KEY;
 const ors_url = process.env.REACT_APP_ORS_URL;
@@ -17,7 +18,11 @@ function MapRoute() {
     const dest1 = {lat:22.3569, lng:91.7832} ;
     const [source,setSource] = useState(source1);
     const [dest,setDest] = useState(dest1);
-
+    const {speak } = useSpeechSynthesis();
+    // useMemo(() => {
+    //     speak({text:`showing route from ${sourceGeo} to ${destGeo}`});
+    // }, [sourceGeo,destGeo]) ;
+ 
     useAxiosFetch(
         (responseData) => {
             console.log("coordinates source ");
@@ -32,11 +37,14 @@ function MapRoute() {
             setDest({lat:responseData.features[0].geometry.coordinates[1],lng:responseData.features[0].geometry.coordinates[0]});
         },
         search_url+destGeo,undefined,[]);
-    
+    useEffect(() => {
+        speak({text:`showing route from ${sourceGeo} to ${destGeo}`});
+    }, [source,dest] ) ;
+
     return (
         <div className="App">
             <Box>
-                <MapRouteComponent sourceCity={source} destinationCity={dest} />
+                <MapRouteComponent sourceCity={source} destinationCity={dest} /> 
             </Box>
         </div>
 
