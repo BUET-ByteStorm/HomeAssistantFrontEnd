@@ -1,4 +1,6 @@
 import { useState } from "react";
+import {useCookies} from "react-cookie";
+
 import {
   Flex,
   Heading,
@@ -16,6 +18,7 @@ import {
   InputRightElement
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import postData from "../utils/postData";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -30,6 +33,13 @@ const Login = () => {
 
   const handleSubmit = () => {
     console.log(email + " " + password);
+    postData('/auth/login',{username:email,password:password}).then((response) => {
+      console.log(response);
+
+      if(response.status === 200 ){
+        
+      }
+    })
   }
 
   return (
@@ -89,7 +99,7 @@ const Login = () => {
               </FormControl>
               <Button
                 borderRadius={0}
-                onClick={handleSubmit}
+                onClick={() => handleSubmit()}
                 variant="solid"
                 colorScheme="teal"
                 width="full"
