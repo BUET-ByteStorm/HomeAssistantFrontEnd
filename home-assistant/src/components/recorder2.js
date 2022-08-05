@@ -3,6 +3,9 @@ import AudioAnalyser from "react-audio-analyser";
 import { Box, Button, ButtonGroup } from '@chakra-ui/react'
 import postData from "../utils/postData";
 import sendRecFile from "./sendRecordedFile";
+import { BsRecordCircleFill, BsStopCircleFill } from "react-icons/bs"
+import { FaMicrophone } from "react-icons/fa"
+import { AiFillHo } from "react-icons/ai"
 
 import { useNavigate } from "react-router-dom";
 
@@ -21,13 +24,11 @@ function InRecorder(props) {
   }
 
   const {audioSrc} = props;
-  return (
-            <Button onClick={() => {
-                sendRecFile(audioSrc, next);
-            }}
-            >
-                Send
-            </Button>
+  return (  
+
+    <Button leftIcon={<FaMicrophone/>} variant='solid' onClick={() => {
+      sendRecFile(audioSrc, next);
+  }} ml='2' mr='2'>Execute</Button>
   )
 }
 
@@ -66,6 +67,8 @@ export default class AudioRecorder extends Component {
       // audioOptions: {sampleRate: 30000}, // 设置输出音频采样率
       status,
       audioSrc,
+      backgroundColor: '#ffffff',
+      height: '8px',
       timeslice: 1000, // timeslice（https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/start#Parameters）
       startCallback: e => {
         console.log("succ start", e);
@@ -87,39 +90,19 @@ export default class AudioRecorder extends Component {
       }
     };
     return (
-      <Box style={{display:"block",alignContent:"center",justifyContent:"center"}}>
+
+      <div>
+        <Box maxW="720px" m="auto"> 
         <AudioAnalyser {...audioProps}>
           <div className="btn-box">
-            <Button colorScheme='blue'
-                    onClick={() => this.controlAudio("recording")}>
-                Start
-            </Button>
-            <Button onClick={() => this.controlAudio("paused")}>
-              Pause
-            </Button>
-            <Button
-              onClick={() => this.controlAudio("inactive")}
-            >
-              Stop
-            </Button>
-            <Button onClick={() => console.log(AudioAnalyser)}>
-              Log
-            </Button>
+              <Button leftIcon={<FaMicrophone/>} variant='solid' onClick={() => this.controlAudio("recording")} ml='2' mr='2'>Start</Button>
+              <Button leftIcon={<BsStopCircleFill/>} variant='solid' onClick={() => this.controlAudio("inactive")} ml='2' mr='2'>Stop</Button>
+            
             <InRecorder audioSrc={audioSrc} />
           </div>
         </AudioAnalyser>
-        {/* <p>choose output type</p>
-        <select
-          name=""
-          id=""
-          onChange={e => this.changeScheme(e)}
-          value={audioType}
-        >
-          <option value="audio/wav">audio/wav</option>
-          <option value="audio/webm">audio/webm</option>
-          <option value="audio/mp3">audio/mp3</option>
-        </select> */}
-      </Box>
+        </Box>
+      </div>
     );
   }
 }

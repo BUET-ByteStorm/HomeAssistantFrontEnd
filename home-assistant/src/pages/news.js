@@ -2,7 +2,11 @@ import React, { Component, useEffect, useState } from "react";
 import { FaMicrophone } from "react-icons/fa"
 import { Input, Box, Button, Divider, Heading, Text, Image, Stack } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
+<<<<<<< HEAD
 import { useSpeechSynthesis } from "react-speech-kit";
+=======
+import Recorder2 from "../components/recorder2";
+>>>>>>> main
 
 async function searchNews(q) {
   q = encodeURIComponent(q);
@@ -43,12 +47,13 @@ function News() {
 
       <Box maxW='720px' p="5px" m="auto" mt="8" mb="8">
         <Stack spacing={3} direction='row'>
-          <Input placeholder='Search' size='md' value={query} onChange={e => setQuery(e.target.value)} />
-          <Button leftIcon={<FaMicrophone />} variant='solid'>Voice</Button>
-          <Button onClick={search}>Search</Button>
+        <Input placeholder='Search' size='md' value={query} onChange={e => setQuery(e.target.value)} />
+        <Button onClick={search}>Search</Button>
 
         </Stack>
-      </Box>
+
+        <Recorder2 m="auto"></Recorder2>
+        </Box>
 
       <Box maxW='720px' m='auto'>
         {!list
@@ -78,24 +83,6 @@ function Item({ item }) {
 
       < Feature title={item.name} desc={item.description} img={item.image?.thumbnail?.contentUrl} datePublished={formatDate(item.datePublished)} onClick={() => { window.open(item.url) }} />
 
-      {/* <div className="meta">
-        
-          <span className="provider">
-            {item.provider[0].image?.thumbnail &&
-              <img className="provider-thumbnail"
-                alt=""
-                src={item.provider[0].image.thumbnail.contentUrl + '&w=16&h=16'}
-              />
-            }
-            {item.provider[0].name}
-
-          </span> */}
-
-      {/* {item.category &&
-            <span>{separateWords(item.category)}</span>
-          } */}
-
-      {/* </div> */}
       <Divider />
     </div>
   );

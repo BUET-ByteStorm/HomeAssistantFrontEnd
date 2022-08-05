@@ -20,7 +20,8 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-const Login = () => {
+const Register = () => {
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -48,7 +49,7 @@ const Login = () => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Login</Heading>
+        <Heading color="teal.400">Register</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form>
             <Stack
@@ -94,20 +95,20 @@ const Login = () => {
                 colorScheme="teal"
                 width="full"
               >
-                Login
+                Register
               </Button>
             </Stack>
           </form>
         </Box>
       </Stack>
       <Box>
-        New to us?{" "}
-        <Link color="teal.500" href="/register">
-          Sign Up
+        Already have an account?{" "}
+        <Link color="teal.500" href="/login">
+          Sign In
         </Link>
       </Box>
     </Flex>
   );
 };
 
-export default Login;
+export default Register;

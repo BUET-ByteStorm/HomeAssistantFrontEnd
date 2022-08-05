@@ -36,7 +36,7 @@ function Parser() {
             let source = "",dest = "";
             let i;
             for(i = 2;i<splitText.length;i++){
-                if( splitText[i].toLowerCase() == "to" ){
+                if( splitText[i].toLowerCase() === "to" ){
                     i++;
                     break;
                 }
@@ -49,9 +49,24 @@ function Parser() {
 
             navigate('/maproute/'+source+'/'+dest);
         }
-        else if( splitText[0].toLowerCase() == "news") {
+        else if( splitText[0].toLowerCase() === "news") {
             const str = splitText.slice(1,splitText.length).join(" ");
             navigate('/news/'+str);
+        }
+        else if (splitText[0].toLowerCase() === "create" && splitText[1].toLowerCase() === "note") {
+            console.log("ok")
+            console.log(text)
+            const splitText2 = text.split(" ");
+            var str = "";
+            for (let i = 2; i < splitText2.length; i++) {
+                if (i === splitText2.length - 1) {
+                    str = str + splitText2[i];
+                } else str = str + splitText2[i] + " ";
+            }
+            console.log(str)
+            navigate('/notes/create/' + str);
+        } else if (splitText[0].toLowerCase() === "show" && (splitText[1].toLowerCase() === "notes" || splitText[1].toLowerCase() === "notes")) {
+            navigate('/notes/show');
         }
         else{
             navigate('/search/'+formattedText);
